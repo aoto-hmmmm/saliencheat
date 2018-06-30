@@ -4,8 +4,8 @@
 挂机脚本来源于[此](https://github.com/SteamDatabase/SalienCheat)
 
 ##环境需求
->*docker
->*linux
+> * docker
+> * linux
 
 ##使用之前
 将saliencheat中[you steam token]改成自己steam的token值
@@ -13,8 +13,14 @@
 
 ##用法
 创建更新并启动
->./saliencheat update
+```bash
+./saliencheat update
+```
 启动
->./saliencheat start
+```bash
+./saliencheat start
+```
 查看日志
->./saliencheat log
+```bash
+./saliencheat log
+```
