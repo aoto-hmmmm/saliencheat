@@ -9,7 +9,7 @@
 
 ## 使用之前
 将saliencheat中[you steam token]改成自己steam的token值
-> 浏览器上登录STEAM账户并访问https://steamcommunity.com/saliengame/gettoken即可获取token值
+> 浏览器上登录STEAM账户并访问 https://steamcommunity.com/saliengame/gettoken 即可获取token值
 
 ## 用法
 创建更新并启动
