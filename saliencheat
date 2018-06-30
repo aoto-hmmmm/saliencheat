@@ -2,7 +2,7 @@
 
 if [ $1 == "start" ]; then
 	#run saliencheat of docker
-	docker run -it --init --rm -d -e TOKEN=6f99a17eb203eb515cf19c25a7c9eb0d steamdb/saliencheat
+	docker run -it --init --rm -d -e TOKEN=[you steam token] steamdb/saliencheat
 elif [ $1 == "update" ]; then
 	#delete SalienCheat source file
 	rm -rf ~/SalienCheat
