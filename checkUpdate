@@ -1,0 +1,15 @@
+#!/bin/bash
+
+while true; do
+	dockerID="$(docker ps | grep "steamdb/saliencheat" | awk '{print $1}')"
+	sleep 5s
+	if [ "$dockerID" == "" ]; then
+		exit 0
+	fi
+	docker logs --tail=30 $dockerID | grep "please make sure to update."
+	if [ "$?" == "0" ]; then
+		./saliencheat update
+	fi
+	echo "No updates detected"
+	sleep 2m
+done
