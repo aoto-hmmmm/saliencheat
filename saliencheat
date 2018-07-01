@@ -1,23 +1,29 @@
-#/bin/bash
+#!/bin/bash
 
-if [ $1 == "start" ]; then
+if [ "$1" == "start" ]; then
 	#run saliencheat of docker
-	docker run -it --init --rm -d -e TOKEN=[you steam token] steamdb/saliencheat
-elif [ $1 == "update" ]; then
+	docker run -it --init --rm -d -e TOKEN=6f99a17eb203eb515cf19c25a7c9eb0d steamdb/saliencheat
+	nohup ./checkUpdate &
+elif [ "$1" == "update" ]; then
 	#delete SalienCheat source file
-	rm -rf ~/SalienCheat
+	rm -rf ./SalienCheat
 	#get SalienCheat source file of github
 	git clone https://github.com/SteamDatabase/SalienCheat.git
-	#stop all docker
-	docker stop $(docker ps -a -q)
+	#stop saliencheat
+	./saliencheat stop
 	#build SalienCheat into docker
-	docker build ~/SalienCheat -t steamdb/saliencheat
+	docker build ./SalienCheat -t steamdb/saliencheat
 	#remove another docker image of saliencheat
 	docker rmi $(docker images | grep "none" | awk '{print $3}')
 	#run saliencheat of docker
-	~/saliencheat start
-elif [ $1 == "log" ]; then
+	./saliencheat start
+elif [ "$1" == "log" ]; then
 	#show steamdb/saliencheat running log
-	docker logs -f $(docker ps -a |grep "steamdb" | awk '{print $1}')
+	docker logs -f $(docker ps -a | grep "steamdb" | awk '{print $1}')
+elif [ "$1" == "stop" ]; then
+	#stop steamdb/saliencheat
+	docker stop $(docker ps -a | grep "steamdb" | awk '{print $1}')
+	kill $(ps aux | grep "checkUpdate" | awk 'NR==1{print $2}')
+	rm -rf ./nohup.out
 fi
 
